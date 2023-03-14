@@ -1,0 +1,21 @@
+[package]
+org = "danesh"
+name = "social_media"
+version = "0.1.0"
+distribution = "2201.5.0-20230310-154800-f544ec82"
+
+[build-options]
+observabilityIncluded = true
+
+[persist]
+datastore = "mysql"
+module = "social_media.socialDb"
+
+[[platform.java11.dependency]]
+groupId = "io.ballerina.stdlib"
+artifactId = "persist-native"
+version = "0.2.0"
+
+[[platform.java11.repository]]
+id="wso2-nexus"
+url = "https://maven.wso2.org/nexus/content/groups/public/"
