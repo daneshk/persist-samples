@@ -6,7 +6,7 @@ type User record {|
     string name;
     int age;
     string email;
-    Post[] posts;
+	Post[] posts;
 |};
 
 type Post record {|

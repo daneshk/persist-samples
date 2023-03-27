@@ -66,7 +66,7 @@ public function main() returns error? {
         io:println("Created user: ", user);
     };
 
-    stream<UserPosts, persist:Error?> userWithPosts = dbClient->/users.get();
+    stream<UserPosts, persist:Error?> userWithPosts = dbClient->/users;
 
     // iterate through the returned stream
     check from var user in userWithPosts
@@ -81,16 +81,15 @@ public function main() returns error? {
     check from var post in postWithUser
     where post.user.name == "Jane Doe" 
     do {
-        string postId = post.id;
-        _ = check dbClient->/posts/[postId].put({body: "Hello Ballerina and Choreo"});
+        _ = check dbClient->/posts/[post.id].put({body: "Hello Ballerina and Choreo"});
     };
 
     postWithUser = dbClient->/posts();
     check from var post in postWithUser
     where post.user.name == "John Doe" 
     do {
-        string postId = post.id;
-        _ = check dbClient->/posts/[postId].delete();
+        //string postId = post.id;
+        _ = check dbClient->/posts/[post.id].delete();
     };
 
     // get posts
@@ -101,7 +100,7 @@ public function main() returns error? {
     };
 
     // get user by ID
-    UserPosts user = check dbClient->/users/[userIds[0]].get();
+    UserPosts user = check dbClient->/users/[userIds[1]].get();
     io:println("User by id: ", user);
 
 }
